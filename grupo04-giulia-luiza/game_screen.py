@@ -25,6 +25,10 @@ def game_screen(window):
     last_update = pygame.time.get_ticks()
     imgprincipal = Input(dicionario_de_arquivos,palavras(2))
 
+    memorizando=True
+    tempo= pygame.time.get_ticks()
+    
+
     # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
@@ -40,14 +44,29 @@ def game_screen(window):
             # ----- Verifica consequências
             if event.type == pygame.QUIT:
                 state = DONE
-
+        tempoagora=pygame.time.get_ticks()
+        if memorizando == True and tempoagora-tempo>3000:
+            memorizando=False
+            tempo=tempoagora
+        if memorizando == False and tempoagora-tempo>3000:
+            memorizando=True
+            tempo=tempoagora
+        print(memorizando)
         # ----- Gera saídas
+        
         window.fill(BLACK)  # Preenche com a cor PRETA
         window.blit(imgprincipal.image, imgprincipal.rect)
-        text = font.render(imgprincipal.palavra, True, (0, 0, 255))
-        window.blit(text, (430, 250))
-        text = font.render("MEMORIZE", True, (0, 0, 255))
-        window.blit(text, (350, 170))
+        
+        if memorizando == True:
+        
+            text = font.render(imgprincipal.palavra, True, (0, 0, 255))
+            window.blit(text, (430, 250))
+            text = font.render("MEMORIZE", True, (0, 0, 255))
+            window.blit(text, (350, 170))
+        else:
+            text = font.render("DIGITE...", True, (0, 0, 255))
+            window.blit(text, (350, 170))
+
 
 
         pygame.display.update()  # Mostra o novo frame para o jogador
