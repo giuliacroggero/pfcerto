@@ -27,7 +27,7 @@ def game_screen(window):
 
     memorizando=True
     tempo= pygame.time.get_ticks()
-    
+    digitando = ''
 
     # ===== Loop principal =====
     while state != DONE:
@@ -36,12 +36,14 @@ def game_screen(window):
         segundos = 40 - segundos
         if segundos <= 0:
             state = DONE
-        print(segundos)
+        #print(segundos)
 
 
         # ----- Trata eventos
         for event in pygame.event.get():
             # ----- Verifica consequências
+            if event.type == pygame.KEYDOWN:
+                print(event.unicode)
             if event.type == pygame.QUIT:
                 state = DONE
         tempoagora=pygame.time.get_ticks()
@@ -51,7 +53,7 @@ def game_screen(window):
         if memorizando == False and tempoagora-tempo>3000:
             memorizando=True
             tempo=tempoagora
-        print(memorizando)
+        #print(memorizando)
         # ----- Gera saídas
         
         window.fill(BLACK)  # Preenche com a cor PRETA
