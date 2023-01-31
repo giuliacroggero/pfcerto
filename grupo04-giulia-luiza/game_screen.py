@@ -56,7 +56,8 @@ def game_screen(window):
         
         window.fill(BLACK)  # Preenche com a cor PRETA
         window.blit(imgprincipal.image, imgprincipal.rect)
-        
+        text = font.render(str(segundos), True, (0, 0, 255))
+        window.blit(text, (650, 50))
         if memorizando == True:
         
             text = font.render(imgprincipal.palavra, True, (0, 0, 255))
