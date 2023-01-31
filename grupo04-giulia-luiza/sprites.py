@@ -1,10 +1,10 @@
 import pygame
 
 class Input(pygame.sprite.Sprite):
-    def __init__(self, dicionario_de_arquivos):
+    def __init__(self, dicionario_de_arquivos,palavra):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
-
+        self.palavra=palavra
 
         self.image = dicionario_de_arquivos['input']# carrega imagem
         #todo objeto precisa de um rect
