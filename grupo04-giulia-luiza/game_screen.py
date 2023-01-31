@@ -28,7 +28,8 @@ def game_screen(window):
     memorizando=True
     tempo= pygame.time.get_ticks()
     digitando = ''
-
+    vidas=3
+    tamanho=3
     # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
@@ -38,11 +39,13 @@ def game_screen(window):
             state = DONE
         #print(segundos)
 
-
+        if vidas==0:
+            state = DONE
         # ----- Trata eventos
         for event in pygame.event.get():
             # ----- Verifica consequências
             if event.type == pygame.KEYDOWN:
+                digitando+=event.unicode
                 print(event.unicode)
             if event.type == pygame.QUIT:
                 state = DONE
@@ -52,7 +55,14 @@ def game_screen(window):
             tempo=tempoagora
         if memorizando == False and tempoagora-tempo>3000:
             memorizando=True
-            tempo=tempoagora
+            tempo=tempoagora   
+            if digitando != imgprincipal.palavra:
+                vidas-=1
+            
+        
+            imgprincipal.palavra=palavras (tamanho)
+            tamanho+=1
+            digitando=""
         #print(memorizando)
         # ----- Gera saídas
         
@@ -60,6 +70,8 @@ def game_screen(window):
         window.blit(imgprincipal.image, imgprincipal.rect)
         text = font.render(str(segundos), True, (0, 0, 255))
         window.blit(text, (650, 50))
+        text = font.render(str(vidas), True, (0, 0, 255))
+        window.blit(text, (50, 50))
         if memorizando == True:
         
             text = font.render(imgprincipal.palavra, True, (0, 0, 255))
@@ -69,6 +81,8 @@ def game_screen(window):
         else:
             text = font.render("DIGITE...", True, (0, 0, 255))
             window.blit(text, (350, 170))
+            text = font.render(digitando, True, (0, 0, 255))
+            window.blit(text, (400, 400))
 
 
 
