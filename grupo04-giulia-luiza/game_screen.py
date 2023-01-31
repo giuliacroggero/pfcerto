@@ -28,7 +28,10 @@ def game_screen(window):
     # ===== Loop principal =====
     while state != DONE:
         clock.tick(FPS)
-        segundos = int(pygame.time.get_ticks() - last_update)
+        segundos = int((pygame.time.get_ticks() - last_update)/1000)
+        segundos = 40 - segundos
+        if segundos <= 0:
+            state = DONE
         print(segundos)
 
 
