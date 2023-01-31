@@ -1,18 +1,18 @@
 import pygame
 
 class Input(pygame.sprite.Sprite):
-    def __init__(self, dicionario_de_arquivos, tamanho):
+    def __init__(self, dicionario_de_arquivos):
         # Construtor da classe mãe (Sprite).
         pygame.sprite.Sprite.__init__(self)
 
 
-        self.image = # carrega imagem
+        self.image = dicionario_de_arquivos['input']# carrega imagem
         #todo objeto precisa de um rect
         # rect é a representação de retangulo feita pelo pygame
         self.rect = self.image.get_rect()
         # é preciso definir onde a imagem deve aparecer no jogo
-        self.rect.centerx = # Define posicao x
-        self.rect.centery = # Define posicao y
+        self.rect.centerx = 450# Define posicao x
+        self.rect.centery = 350# Define posicao y
         
 
 class Botao(pygame.sprite.Sprite):
